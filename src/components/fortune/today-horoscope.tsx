@@ -69,7 +69,7 @@ export function TodayHoroscope() {
                 <ScoreBar key={cat.category} score={cat.score} label={CATEGORIES[cat.category].labelTh} emoji={CATEGORIES[cat.category].emoji} />
               ))}
             </div>
-            <Link href={`/fortune/result/${data.id}`} className="mt-4 inline-flex items-center gap-1 text-sm text-gold-300 hover:underline">
+            <Link href={`/fortune/result?id=${data.id}`} className="mt-4 inline-flex items-center gap-1 text-sm text-gold-300 hover:underline">
               อ่านคำทำนายฉบับเต็ม <ArrowRight className="size-4" aria-hidden />
             </Link>
           </div>

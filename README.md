@@ -14,8 +14,23 @@ npm run dev                  # http://localhost:3000/fortune
 npm test                     # unit tests (dates, zodiac, CNY, numerology, scoring, cache keys)
 ```
 
+**Live demo (GitHub Pages):** https://flukeapklps.github.io/AI-Personal-Fortune-Teller/fortune/
+
 **Demo mode:** without Supabase env vars (non-production only), the app uses an in-memory store and a single demo user, so the module can be tried immediately.
 Without `ANTHROPIC_API_KEY`, readings come from the built-in fallback generator.
+
+## GitHub Pages (static build)
+
+GitHub Pages only serves static files. So `npm run build:static` builds a static version of the site (into `out/`):
+
+- No API routes, proxy or login. The Fortune Teller runs entirely in the browser.
+- Birth profile and history are stored in the visitor's `localStorage`, and readings use the offline generator. The Claude API key is never exposed, so Claude isn't called.
+- Dates, zodiac, numerology, scoring, caching, favourites and compare work the same way as the full version.
+
+`.github/workflows/deploy-pages.yml` runs tests, builds and deploys on every push to `main` (or manually via *Run workflow*).
+One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+For the full version (Supabase + Claude), deploy the normal build (`npm run build`) to a Node host such as Vercel.
 
 ## Database
 
@@ -43,6 +58,7 @@ The migration does not touch any HSK tables.
 | Daily / weekly / monthly / yearly layouts | `FORMAT_SECTIONS` in `src/lib/fortune/types.ts` |
 | Caching + "new interpretation" | `src/lib/fortune/service.ts`, `cache-key.ts` |
 | History, favourites, compare, delete | `src/app/fortune/history`, `compare`, `src/app/api/fortune/**` |
+| Browser-only backend for the static build | `src/lib/fortune/local-backend.ts`, `client.ts` |
 | Pages: dashboard, selection, results, history, profile | `src/app/fortune/**` |
 | Nav item "ดูดวง" | `src/config/navigation.ts` |
 

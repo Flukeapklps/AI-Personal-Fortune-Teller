@@ -25,7 +25,7 @@ export function QuickPredictions() {
     setError(null);
     try {
       const { prediction } = await requestPrediction({ categories: [...CATEGORY_IDS], period });
-      router.push(`/fortune/result/${prediction.id}`);
+      router.push(`/fortune/result?id=${prediction.id}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : "เกิดข้อผิดพลาด");
       setBusy(null);

@@ -35,7 +35,7 @@ export function PredictionActions({ prediction }: { prediction: PredictionRecord
         period: prediction.period,
         regenerate: true,
       });
-      router.push(`/fortune/result/${next.id}`);
+      router.push(`/fortune/result?id=${next.id}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : "ขอคำทำนายใหม่ไม่สำเร็จ");
       setBusy(null);

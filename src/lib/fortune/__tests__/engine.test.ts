@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { buildBirthProfile } from "../astrology";
 import { buildCacheKey } from "../cache-key";
 import { CATEGORY_IDS } from "../categories";
-import { assembleContent } from "../engine";
+import { assembleContent } from "../compose";
 import { generateFallbackPrediction } from "../fallback";
 import { PERIOD_IDS, resolvePeriod } from "../periods";
 import { computeScores, interpretScore } from "../scoring";

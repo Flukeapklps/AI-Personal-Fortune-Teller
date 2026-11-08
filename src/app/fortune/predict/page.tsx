@@ -1,9 +1,7 @@
-import { PredictionSelector } from "@/components/fortune/prediction-selector";
-import { requireBirthProfile } from "@/lib/fortune/page-data";
+import { PredictScreen } from "@/components/fortune/predict-screen";
 
 export const metadata = { title: "เลือกดูดวง" };
 
-export default async function PredictPage() {
-  await requireBirthProfile("/fortune/predict");
-  return <PredictionSelector />;
+export default function PredictPage() {
+  return <PredictScreen />;
 }

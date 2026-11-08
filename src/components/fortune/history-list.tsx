@@ -161,7 +161,7 @@ export function HistoryList() {
                   className="size-4 shrink-0 accent-[#e9c46a]"
                   aria-label="เลือกเพื่อเปรียบเทียบ"
                 />
-                <Link href={`/fortune/result/${p.id}`} className="flex min-w-0 flex-1 items-center gap-3">
+                <Link href={`/fortune/result?id=${p.id}`} className="flex min-w-0 flex-1 items-center gap-3">
                   <div className="grid size-12 shrink-0 place-items-center rounded-full bg-white/5 font-display text-lg text-gold-300 ring-1 ring-gold-400/30">
                     {p.overallScore}
                   </div>
