@@ -1,6 +1,6 @@
 # Personal AI Fortune Teller (ดูดวง)
 
-A self-contained **Fortune Teller module** for the HSK Learning System (Next.js 16, TypeScript, Tailwind CSS v4, Supabase, Claude API).
+A personal horoscope web app (Next.js 16, TypeScript, Tailwind CSS v4, Supabase, Claude API).
 Users enter only their **date of birth** and pick the life areas and time period they want a reading for. They get a personalised Thai horoscope with luck scores, lucky details, history, favourites and comparisons.
 
 > Predictions are for entertainment and personal reflection only. Scores are illustrative ratings, not measured probabilities.
@@ -43,7 +43,6 @@ Apply `supabase/migrations/20261107000000_fortune_teller.sql` (e.g. `supabase db
 | `horoscope_predictions` | History + cache (`cache_key`, `variant`, JSON `content`) | owner select/insert/delete; immutable |
 | `horoscope_favorites` | Saved favourites | owner only; must own the prediction |
 
-The migration does not touch any HSK tables.
 
 ## Features → code
 
@@ -60,7 +59,7 @@ The migration does not touch any HSK tables.
 | History, favourites, compare, delete | `src/app/fortune/history`, `compare`, `src/app/api/fortune/**` |
 | Browser-only backend for the static build | `src/lib/fortune/local-backend.ts`, `client.ts` |
 | Pages: dashboard, selection, results, history, profile | `src/app/fortune/**` |
-| Nav item "ดูดวง" | `src/config/navigation.ts` |
+| Landing page + header | `src/app/page.tsx`, `src/components/layout/site-header.tsx` |
 
 ### Calculation notes
 
@@ -70,11 +69,3 @@ The migration does not touch any HSK tables.
 - **Scores** are seeded from birth date + period + range + variant. The same request always gives the same numbers, and Claude writes text that matches them. Bands: 90–100 ดีเยี่ยม, 80–89 ดีมาก, 70–79 ดี, 60–69 ปานกลาง, < 60 ควรระมัดระวัง.
 - **Caching:** key = `userId | birthDate | categories | period | rangeStart_rangeEnd`. Refreshing reuses the stored reading. *ขอคำทำนายใหม่* stores a new `variant`.
 
-## Integrating into the HSK project
-
-1. Copy `src/lib/fortune`, `src/components/fortune`, `src/app/fortune`, `src/app/api/fortune`, and the migration.
-2. Point `src/lib/auth/session.ts` and `src/lib/supabase/*` at the HSK project's existing Supabase helpers (or keep them; they use the standard `@supabase/ssr` cookie session).
-3. Add the `/fortune` entry from `src/config/navigation.ts` to the existing nav. Protect `/fortune` and `/api/fortune` in the existing proxy (see `src/lib/supabase/proxy-session.ts`).
-4. Add `ANTHROPIC_API_KEY` to the server environment.
-
-The HSK pages in this repository (`/learn`, `/flashcards`, …) are placeholders for the real HSK modules.

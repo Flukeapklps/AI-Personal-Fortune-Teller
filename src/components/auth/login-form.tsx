@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
-const inputCls = "h-11 w-full rounded-xl border border-border bg-surface px-3 focus:border-accent focus:outline-none";
+const inputCls = "h-11 w-full rounded-xl border border-white/15 bg-night-900/70 px-3 text-white focus:border-gold-400 focus:outline-none";
 
 export function LoginForm({ next }: { next: string }) {
   const router = useRouter();
@@ -36,11 +36,11 @@ export function LoginForm({ next }: { next: string }) {
 
   return (
     <form onSubmit={submit} className="mt-6 space-y-3">
-      <label className="block text-sm">
+      <label className="block space-y-1 text-sm text-white/80">
         อีเมล
         <input className={inputCls} type="email" required autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       </label>
-      <label className="block text-sm">
+      <label className="block space-y-1 text-sm text-white/80">
         รหัสผ่าน
         <input
           className={inputCls}
@@ -52,11 +52,11 @@ export function LoginForm({ next }: { next: string }) {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      {msg && <p role="alert" className="text-sm text-red-500">{msg}</p>}
-      <button disabled={busy} className="h-11 w-full rounded-xl bg-accent font-medium text-white disabled:opacity-60">
+      {msg && <p role="alert" className="text-sm text-red-300">{msg}</p>}
+      <button disabled={busy} className="h-11 w-full rounded-xl bg-gradient-to-r from-gold-300 to-gold-500 font-semibold text-night-950 disabled:opacity-60">
         {mode === "signin" ? "เข้าสู่ระบบ" : "สมัครสมาชิก"}
       </button>
-      <button type="button" className="w-full text-sm text-muted underline" onClick={() => setMode(mode === "signin" ? "signup" : "signin")}>
+      <button type="button" className="w-full text-sm text-white/60 underline" onClick={() => setMode(mode === "signin" ? "signup" : "signin")}>
         {mode === "signin" ? "ยังไม่มีบัญชี? สมัครสมาชิก" : "มีบัญชีแล้ว? เข้าสู่ระบบ"}
       </button>
     </form>

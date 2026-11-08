@@ -12,10 +12,10 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
   const next = safeNext((await searchParams).next);
   return (
     <div className="mx-auto max-w-sm px-4 py-16">
-      <h1 className="text-2xl font-semibold">เข้าสู่ระบบ</h1>
+      <h1 className="font-display text-2xl text-gold-300">เข้าสู่ระบบ</h1>
       {isDemoMode() ? (
-        <p className="mt-3 text-muted">
-          โหมดสาธิต (ไม่ได้ตั้งค่า Supabase) — <Link className="text-accent underline" href={next}>ไปต่อเลย</Link>
+        <p className="mt-3 text-white/70">
+          โหมดสาธิต (ไม่ได้ตั้งค่า Supabase) — <Link className="text-gold-300 underline" href={next}>ไปต่อเลย</Link>
         </p>
       ) : (
         <LoginForm next={next} />

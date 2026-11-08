@@ -11,7 +11,7 @@ export default function FortuneLayout({ children }: LayoutProps<"/fortune">) {
   const demo = !staticSite && isDemoMode();
   const ai = !staticSite && isAiConfigured();
   return (
-    <div className="fortune-bg min-h-[calc(100dvh-3.5rem)] lg:min-h-dvh">
+    <div>
       <div className="mx-auto max-w-5xl px-4 pb-16 pt-6 sm:px-6 lg:pt-10">
         <header className="mb-5">
           <p className="text-xs uppercase tracking-[0.3em] text-gold-400/80">Personal AI Fortune Teller</p>
